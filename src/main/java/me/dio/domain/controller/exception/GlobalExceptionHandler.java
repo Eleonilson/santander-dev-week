@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.NoSuchElementException;
 
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    private final Logger logger  = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleBusinessException(IllegalArgumentException businessException) {
@@ -23,10 +22,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNotFoundException(NoSuchElementException notFoundException) {
-        return new ResponseEntity<>("Resource ID not found.",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Resource ID not found.", HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(NoSuchElementException.class)
+    @ExceptionHandler(Throwable.class)
     public ResponseEntity<String> handleUnexpectedException(Throwable unexpectedException) {
         var message = "Unexpected server error, see the logs.";
         logger.error(message, unexpectedException);
