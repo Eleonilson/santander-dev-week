@@ -1,7 +1,14 @@
 package me.dio.domain.model;
-import jakarta.persistence.*;
-
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "tb_user")
 public class User {
@@ -11,6 +18,7 @@ public class User {
     private Long id;
 
     private String name;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
 
@@ -47,20 +55,20 @@ public class User {
         this.account = account;
     }
 
-    public List<Feature> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<Feature> features) {
-        this.features = features;
-    }
-
     public Card getCard() {
         return card;
     }
 
     public void setCard(Card card) {
         this.card = card;
+    }
+
+    public List<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
     }
 
     public List<News> getNews() {
@@ -70,4 +78,5 @@ public class User {
     public void setNews(List<News> news) {
         this.news = news;
     }
+
 }
